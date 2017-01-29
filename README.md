@@ -1,6 +1,8 @@
 # 3DGraphicsJS
-3d graphics engine in javascript
-This is a pretty simple graphics library in javascript.
-Currently it can take in a obj file and display it.
-Very much in progress.
-Uses painters algorithm, no z buffers :(.
+3d graphics engine in javascript</br>
+This is a pretty simple graphics library in javascript.</br>
+Currently it can take in a obj file and display it.</br>
+Very much in progress.</br>
+Uses painters algorithm, no z buffers :(.</br>
+100% spaghetti code. Not cleaned up at all, also not sure what final form will be. </br>
+May become library you instantiate with an object, or some other </br>
