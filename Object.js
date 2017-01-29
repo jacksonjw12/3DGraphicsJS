@@ -17,7 +17,7 @@ function Face(points,a,b,c,color,d){
 		//console.log(k)
 
 		//this.color = color;
-		this.color = ColorLuminance(color,-normal.z/1.4+normal.x/10 + normal.y/10 -.1)
+		this.color = ColorLuminance(color,-.6-normal.z -.1)
 		this.a = a;
 		this.b = b;
 		this.c = c;
