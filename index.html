@@ -1,0 +1,40 @@
+<html>
+<body>
+<script src="graphics.js"></script>
+
+<!-- <a id="scene" src="scene.obj"></a> -->
+<canvas id = "canvas">
+
+</body>
+<style>
+body {
+	margin:0;
+}
+canvas {
+	margin:0;
+}
+</style>
+<script>
+var c = document.getElementById("canvas");
+c.width = window.innerWidth;
+c.height = window.innerHeight;
+//console.log(document.getElementById("scene".innerHTML))
+
+
+
+
+//console.log(str)
+function isLoaded(){
+	var g = new Graphics(c);
+	g.addCamera()
+	scene.addObject(modelFromObj(testSceneObj,true))
+	g.begin();
+	
+
+}
+
+
+
+
+</script>
+</html
