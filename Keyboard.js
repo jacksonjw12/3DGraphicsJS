@@ -32,14 +32,14 @@ function Keyboard(){
 
 
 function doMovement(){
-
+	var rotSp = .8
 	var movement = new point3d(0,0,0)
-	if(keys.keysDown.indexOf("Q") > -1){
+	if(keys.keysDown.indexOf("E") > -1){
 		//camera.position.z+=10;
 		movement.z++;
 
 	}
-	if(keys.keysDown.indexOf("E") > -1){
+	if(keys.keysDown.indexOf("Q") > -1){
 		//camera.position.z-=10;
 		movement.z--;
 
@@ -65,25 +65,25 @@ function doMovement(){
 	}
 
 	if(keys.keysDown.indexOf("&") > -1){
-		camera.rotation.x+=.05;
+		camera.rotation.x+=.05*rotSp;
 		
 	}
 	if(keys.keysDown.indexOf("(") > -1){
-		camera.rotation.x-=.05;
+		camera.rotation.x-=.05*rotSp;
 		
 	}
 	if(keys.keysDown.indexOf("%") > -1){
-		camera.rotation.z-=.05;
+		camera.rotation.z-=.05*rotSp;
 		
 	}
 	if(keys.keysDown.indexOf("'") > -1){
-		camera.rotation.z+=.05;
+		camera.rotation.z+=.05*rotSp;
 		
 	}
 	//console.log(keys.keysDown)
 
 	movement.normalize();
-	var speed = -1
+	var speed = -.5
 
 	var forward = new point3d(-Math.cos(Math.PI/2-camera.rotation.z)*Math.sin(camera.rotation.x),Math.sin(Math.PI/2-camera.rotation.z)*Math.sin(camera.rotation.x),Math.sin(-Math.PI/2+camera.rotation.x));
 	var left = new point3d(-Math.cos(-camera.rotation.z)*Math.sin(camera.rotation.x),Math.sin(-camera.rotation.z)*Math.sin(camera.rotation.x),0);

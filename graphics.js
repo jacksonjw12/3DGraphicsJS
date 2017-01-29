@@ -47,7 +47,7 @@ function step(){
 	doMovement();
 
 	renderer.render(camera,scene);
-	setTimeout(step,30)
+	setTimeout(step,10)
 }
 
 function Graphics(c) {
