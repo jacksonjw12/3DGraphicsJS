@@ -1,16 +1,25 @@
 
-function Scene(objs){
-	this.objects = objs;
+function Scene(objs,cam,keys){
 	
-}
+	this.objects = objs;
+	this.camera = cam;
+	this.keyboard = keys;
 
-function Scene(){
-	this.objects = [];
+
+
+
+
 	this.addObject = function(obj){
 		this.objects.push(obj)
 	}
+
+
+
+
 	
 }
+
+
 
 
 

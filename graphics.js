@@ -1,64 +1,33 @@
+	function Graphics(c) {
 
-var urls = ["Points.js","Scene.js","Camera.js","Keyboard.js","Render.js","Object.js","Testscene.js"]
-
-var numLoaded = 0;
-var isLoaded = false;
-
-loadScripts(urls,countLoaded);
-
-function countLoaded(){
-	numLoaded++;
-	if(numLoaded == urls.length){
-		isLoaded();
-	}
-}
-
-function loadScripts(urls, callback)
-{
-	console.log("loading scripts")
-    // Adding the script tag to the head as suggested before
-    for(var i = 0; i < urls.length-1; i++){
-    	var script = document.createElement('script');
-	    script.type = 'text/javascript';
-	    script.src = urls[i];
-
-	    // Then bind the event to the callback function.
-	    // There are several events for cross browser compatibility.
-	    script.onreadystatechange = callback;
-    	script.onload = callback;
-	    document.body.appendChild(script);
-
-	}
-	var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = urls[urls.length-1];
-    script.onreadystatechange = callback;
-    script.onload = callback;
-    
-   
-    document.body.appendChild(script);
-}
-var camera;
-var scene;
-var renderer;
-var keys
-function step(){
-	canvas.context.clearRect(0,0,canvas.width,canvas.height)
-	doMovement();
-
-	renderer.render(camera,scene);
-	setTimeout(step,10)
-}
-
-function Graphics(c) {
-	keys = new Keyboard();
-	keys.initialize(keys);
-	camera = new Camera();
-	scene = new Scene();
-	renderer = new Renderer()
-	console.log("created graphics")
-	canvas = {"width":c.width,"height":c.height,"context":c.getContext('2d')};
 	
+	
+	console.log("graphics")
+	this.canvas = {"width":c.width,"height":c.height,"context":c.getContext('2d')};
+	
+	this.renderer = new Renderer();
+
+	this.stepCount = 0;
+	this.scene = undefined;
+
+	this.step = function(){
+		this.stepCount++;
+		
+		//this.canvas.context.clearRect(0,0,canvas.width,canvas.height)
+		
+		if(this.scene != undefined){
+			
+
+			this.scene.keyboard.doMovement(this.scene.camera);
+			
+		}
+		
+		this.renderer.render(this.scene,this.canvas,this.stepCount);
+		var self = this;
+		window.setTimeout(function(){self.step()},10)
+	}
+
+
 	this.addCamera = function(pos, rot){
 		this.camera = new Camera(pos,rot,Math.PI/2);
 		camera = this.camera;
@@ -68,6 +37,11 @@ function Graphics(c) {
 		camera = this.camera;
 
 	}
+
+	this.setScene = function(s){
+		this.scene = s;
+	}
+
 	this.addTestScene = function(){
 		//var points = [new point3d(-1,-1,0),new point3d(-1,1,0),new point3d(1,1,0),new point3d(1,-1,0),
 					  //new point3d(-1,-1,2),new point3d(-1,1,2),new point3d(1,1,2),new point3d(1,-1,2),]
@@ -81,8 +55,15 @@ function Graphics(c) {
 	}
 	
 	this.begin = function(){
-		console.log("begin")
-		step();
+		if(this.scene != undefined){
+			console.log("begin")
+			console.log(this.scene)
+			this.step();
+		}
+		else{
+			console.log("no scene defined, use Graphics.setScene(s)")
+		}
+		
 
 	}
 

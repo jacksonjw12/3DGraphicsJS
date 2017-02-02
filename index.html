@@ -1,6 +1,21 @@
 <html>
 <body>
 <script src="graphics.js"></script>
+<script src="Camera.js"></script>
+
+<script src="Keyboard.js"></script>
+
+<script src="Object.js"></script>
+<script src="Points.js"></script>
+<script src="Render.js"></script>
+<script src="Scene.js"></script>
+<script src="Testscene.js"></script>
+<script src="cube.js"></script>
+<script src="bunny.js"></script>
+<script src="teapot.js"></script>
+
+
+
 
 <!-- <a id="scene" src="scene.obj"></a> -->
 <canvas id = "canvas">
@@ -24,14 +39,24 @@ c.height = window.innerHeight;
 
 
 //console.log(str)
-function isLoaded(){
-	var g = new Graphics(c);
-	g.addCamera()
-	scene.addObject(modelFromObj(testSceneObj,true))
-	g.begin();
+var g = new Graphics(c);
+var k = new Keyboard();
+
+var c = new Camera();
+//var m = modelFromObj(testSceneObj,true);
+var m1 = modelFromObj(bunnyObj,true);
+m1.scale(100)
+var m2 = modelFromObj(teapot,true);
+m2.translate(new point3d(10,0,0))
+m2.scale(2)
+var	 s = new Scene([m1] , c, k)
+//console.log(m)
+
+g.setScene(s);
+g.begin();
+
 	
 
-}
 
 
 

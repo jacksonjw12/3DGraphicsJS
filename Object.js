@@ -1,6 +1,37 @@
-function Model(faces, points){
+function Model(faces, points,centerPoint){
 	this.faces = faces;
 	this.points = points;
+	this.center = new point3d(0,0,0)
+	this.rotation = new point3d(0,0,0)
+	if(centerPoint != undefined){
+		this.center = centerPoint;
+	}
+	this.translate = function(vector){
+		//console.log(this)
+		//console.log("translate")
+		for(var p = 0; p<this.points.length; p++){
+			this.points[p].add(vector);
+		}
+		this.center.add(vector)
+	}
+	this.scale = function(scalar){
+		//console.log(this)
+		//console.log("translate")
+		for(var p = 0; p<this.points.length; p++){
+			var dx = this.points[p].x-this.center.x
+			var dy = this.points[p].y-this.center.y
+			var dz = this.points[p].z-this.center.z
+
+			var centerCorrectedPoint = new point3d(dx,dy,dz)
+			centerCorrectedPoint.scale(scalar);
+			centerCorrectedPoint.add(this.center);
+			this.points[p] = centerCorrectedPoint;
+		}
+		
+	}
+
+
+
 }
 function Face(points,a,b,c,color,d){
 		//this.color = shadeColor1(color,t*a.latestProject.x*t/25 * Math.pow(Math.abs(b.z-a.z)*Math.abs(c.z-d.z)*Math.abs(a.z-d.z)*Math.abs(b.z-c.z), .25)/-5 * (c.z-d.z)/(Math.abs(c.z-d.z)+.1) );
@@ -60,7 +91,7 @@ function getColor(){
 }
 
 
-function modelFromObj(obj, sideWays){
+function modelFromObj(obj, sideWays, centerPoint){
 	var points = []
 	var faces = []
 	currentColor = "#000000";
@@ -86,7 +117,7 @@ function modelFromObj(obj, sideWays){
 			var a = 1*(pointIndexes[1]);
 			var b = 1*(pointIndexes[2]);
 			var c = 1*(pointIndexes[3]);
-
+			//console.log(pointIndexes[1])
 			if(pointIndexes.length == 5){
 				var d = 1*(pointIndexes[4]);
 				var ps = [points[a-1],points[b-1],points[c-1],points[d-1]]
@@ -106,6 +137,9 @@ function modelFromObj(obj, sideWays){
 	}
 	console.log(points[0])
 
+	if(centerPoint != undefined){
+		return new Model(faces, points, centerPoint)
+	}
 	return new Model(faces,points)
 }
 
