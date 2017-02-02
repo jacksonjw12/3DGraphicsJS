@@ -43,13 +43,14 @@ var g = new Graphics(c);
 var k = new Keyboard();
 
 var c = new Camera();
-//var m = modelFromObj(testSceneObj,true);
+var m = modelFromObj(testSceneObj,true);
+m.translate(new point3d(10,0,0))
 var m1 = modelFromObj(bunnyObj,true);
-m1.scale(100)
-var m2 = modelFromObj(teapot,true);
-m2.translate(new point3d(10,0,0))
-m2.scale(2)
-var	 s = new Scene([m1] , c, k)
+m1.scale(40)
+//var m2 = modelFromObj(teapot,true);
+//m2.translate(new point3d(10,0,0))
+//m2.scale(2)
+var	 s = new Scene([m,m1] , c, k)
 //console.log(m)
 
 g.setScene(s);

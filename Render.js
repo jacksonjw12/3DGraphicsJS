@@ -223,7 +223,7 @@ function Renderer(){
 					var d = polys[i].d
 					
 
-					var g = {"top":a,"bot":a,"left":a,"right":a}
+					/*var g = {"top":a,"bot":a,"left":a,"right":a}
 					if(b.y > top){g.top = b}
 					if(c.y > top){g.top = c}
 					if(d.y > top){g.top = d}
@@ -243,7 +243,7 @@ function Renderer(){
 					g.right.x+=100;
 					g.left.x-=100;
 					g.top.y+=10;
-					g.top.y-=1;
+					g.top.y-=1;*/
 
 					canvas.context.fillStyle = polys[i].color;
 
