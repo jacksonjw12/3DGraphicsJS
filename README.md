@@ -6,3 +6,6 @@ Very much in progress.</br>
 Uses painters algorithm, no z buffers :(.</br>
 100% spaghetti code. Not cleaned up at all, also not sure what final form will be. </br>
 May become library you instantiate with an object, or some other </br>
+
+Projects using this Library
+<a href='https://github.com/jacksonjw12/Asteroids3D' >My asteroids game</a>
